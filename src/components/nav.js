@@ -2,6 +2,7 @@ import React from "react"
 import { navLinks } from "../config"
 import styled, { css } from "styled-components"
 import { Link } from "gatsby"
+import { Menu } from "./menu"
 
 //this is how you use theme in the styled components ${({theme}) => ... }
 
@@ -36,7 +37,7 @@ const StyledLogo = styled.div`
   font-size: var(--fz-heading);
 `
 const StyledLinks = styled.div`
-${({ theme }) => theme.mixins.flexCenter}
+  ${({ theme }) => theme.mixins.flexCenter}
   ul {
     ${({ theme }) => theme.mixins.flexCenter}
     list-style: none;
@@ -46,24 +47,23 @@ ${({ theme }) => theme.mixins.flexCenter}
       margin: 0 5px;
       position: relative;
       counter-increment: item 1;
-    
     }
     a {
-      padding:10px;
-      font-size:var(--fz-xs);
+      padding: 10px;
+      font-size: var(--fz-xs);
       &:before {
-        content: "0" counter(item)".";
-        margin-right:10px;
-        font-size:var(--fz-xxs);
+        content: "0" counter(item) ".";
+        margin-right: 10px;
+        font-size: var(--fz-xxs);
       }
-      }
-    }
-    .resume-button {
-      ${({ theme }) => theme.mixins.smallButton}
     }
   }
-  @media (max-width:768px) {
-    display:none;
+  .resume-button {
+    ${({ theme }) => theme.mixins.smallButton}
+  }
+
+  @media (max-width: 768px) {
+    display: none;
   }
 `
 
@@ -87,6 +87,7 @@ const Nav = props => {
           </div>
         </StyledLinks>
       </StyledNav>
+      <Menu />
     </StyledHeader>
   )
 }
