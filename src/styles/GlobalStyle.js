@@ -91,6 +91,7 @@ a {
     &:hover,
     &:focus {
       color: var(--red);
+
 	}
 }
 

@@ -3,6 +3,7 @@ import { Link } from "gatsby"
 import styled from "styled-components"
 import { navLinks } from "../config"
 import { useOnClickOutside } from "../hooks/index"
+import { KEY_CODES } from "../utils/index"
 
 const StyledMenu = styled.div`
   display: none;
@@ -149,9 +150,43 @@ const StyledSidebar = styled.div`
 export const Menu = () => {
   const [menuOpen, setMenuOpen] = useState(false)
 
+  const hamburgerRef = useRef()
+  const navRef = useRef(null)
+  const wrapperRef = useRef(null)
+
+  let focusable
+  let firstFocusableEl
+  let lastFocusableEl
+
+  const setFocusable = () => {
+    focusable = [
+      hamburgerRef.current,
+      ...Array.from(navRef.current.querySelectorAll("a")),
+    ]
+    firstFocusableEl = focusable[0]
+    lastFocusableEl = focusable[focusable.length - 1]
+  }
+
+  const handleForwardTab = e => {
+    if (document.activeElement === lastFocusableEl) {
+      e.preventDefault()
+      firstFocusableEl.focus()
+    }
+  }
+
+  const handleBackwardTab = e => {
+    if (document.activeElement === firstFocusableEl) {
+      e.preventDefault()
+      lastFocusableEl.focus()
+    }
+  }
+
   useEffect(() => {
+    document.addEventListener("keydown", onKeyDown)
     window.addEventListener("resize", onResize)
+    setFocusable()
     return () => {
+      document.removeEventListener("keydown", onKeyDown)
       window.removeEventListener("resize", onResize)
     }
   }, [])
@@ -162,34 +197,72 @@ export const Menu = () => {
     }
   }
 
+  const onKeyDown = e => {
+    console.log(e, e.shiftKey)
+    switch (e.key) {
+      case KEY_CODES.ESCAPE:
+      case KEY_CODES.ESCAPE_IE11: {
+        setMenuOpen(false)
+        break
+      }
+      case KEY_CODES.TAB: {
+        if (focusable && focusable.length === 1) {
+          e.preventDefault()
+          break
+        }
+        if (e.shiftKey) {
+          handleBackwardTab(e)
+        } else {
+          handleForwardTab(e)
+        }
+        break
+      }
+      default:
+        break
+    }
+  }
+
   const toggleMenu = () => {
     setMenuOpen(!menuOpen)
   }
 
-  const wrapperRef = useRef()
   useOnClickOutside(wrapperRef, () => setMenuOpen(false))
 
   return (
     <StyledMenu>
       <div ref={wrapperRef}>
-        <StyledHamburgerButton onClick={toggleMenu} menuOpen={menuOpen}>
+        <StyledHamburgerButton
+          onClick={toggleMenu}
+          menuOpen={menuOpen}
+          aria-label="toggle the sidebar"
+          ref={hamburgerRef}
+        >
           <div className="ham-box">
             <div className="ham-box-inner" />
           </div>
         </StyledHamburgerButton>
 
-        <StyledSidebar menuOpen={menuOpen}>
-          <nav>
+        <StyledSidebar
+          menuOpen={menuOpen}
+          aria-hidden={!menuOpen}
+          tabIndex={menuOpen ? 1 : -1}
+        >
+          <nav ref={navRef}>
             <ul>
               {navLinks &&
                 navLinks.map(({ name, url }, i) => (
-                  <li key={i}>
+                  <li key={i} onClick={() => setMenuOpen(false)}>
                     <Link to={url}>{name}</Link>
                   </li>
                 ))}
             </ul>
             <div>
-              <a href="/resume.pdf" className="resume-button" target="_blank">
+              <a
+                href="/resume.pdf"
+                className="resume-button"
+                target="_blank"
+                onClick={() => setMenuOpen(false)}
+              >
                 Resume
               </a>
             </div>
