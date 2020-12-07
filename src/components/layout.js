@@ -3,6 +3,7 @@ import { ThemeProvider } from "styled-components"
 import Nav from "./nav"
 import theme from "../styles/theme"
 import GlobalStyle from "../styles/GlobalStyle"
+import Social from "./social"
 
 export const Layout = ({ children }) => {
   return (
@@ -10,6 +11,7 @@ export const Layout = ({ children }) => {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Nav />
+        <Social />
         <div id="content">{children}</div>
       </ThemeProvider>
     </div>

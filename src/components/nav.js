@@ -2,7 +2,7 @@ import React from "react"
 import { navLinks } from "../config"
 import styled, { css } from "styled-components"
 import { Link } from "gatsby"
-import { Menu } from "./menu"
+import Menu from "./menu"
 
 //this is how you use theme in the styled components ${({theme}) => ... }
 
@@ -26,6 +26,7 @@ const StyledHeader = styled.header`
 `
 
 const StyledNav = styled.nav`
+  position: relative;
   width: 100%;
   ${({ theme }) => theme.mixins.flexBetween}
 `

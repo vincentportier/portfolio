@@ -147,7 +147,7 @@ const StyledSidebar = styled.div`
   }
 `
 
-export const Menu = () => {
+const Menu = () => {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const hamburgerRef = useRef()
@@ -272,3 +272,5 @@ export const Menu = () => {
     </StyledMenu>
   )
 }
+
+export default Menu

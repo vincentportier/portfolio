@@ -26,7 +26,7 @@ time, mark, audio, video {
 	vertical-align: baseline;
 	box-sizing:border-box;
 	font-family:'Work Sans', sans-serif;
-	color:var(--grey);
+
 	font-size:var(--fz-lg)
 }
 /* HTML5 display-role reset for older browsers */
@@ -94,6 +94,13 @@ a {
 
 	}
 }
+
+svg {
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+    vertical-align: middle;
+  }
 
 `
 
