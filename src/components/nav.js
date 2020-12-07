@@ -57,6 +57,7 @@ const StyledLinks = styled.div`
         margin-right: 10px;
         color: var(--red);
         font-size: var(--fz-xxs);
+        font-family: monospace;
       }
     }
   }

@@ -4,6 +4,7 @@ import Nav from "./nav"
 import theme from "../styles/theme"
 import GlobalStyle from "../styles/GlobalStyle"
 import Social from "./social"
+import Email from "./email"
 
 export const Layout = ({ children }) => {
   return (
@@ -12,6 +13,7 @@ export const Layout = ({ children }) => {
         <GlobalStyle />
         <Nav />
         <Social />
+        <Email />
         <div id="content">{children}</div>
       </ThemeProvider>
     </div>

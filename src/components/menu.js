@@ -132,6 +132,7 @@ const StyledSidebar = styled.div`
         display: block;
         margin-bottom: 5px;
         font-size: var(--fz-sm);
+        font-font-family: monospace;
       }
     }
     a {
