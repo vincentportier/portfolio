@@ -1,5 +1,16 @@
-import React, { useState } from "react"
+import React, { useEffect, useState, useRef } from "react"
+import { Link } from "gatsby"
 import styled from "styled-components"
+import { navLinks } from "../config"
+import { useOnClickOutside } from "../hooks/index"
+
+const StyledMenu = styled.div`
+  display: none;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+`
 
 const StyledHamburgerButton = styled.button`
   display: none;
@@ -73,20 +84,118 @@ const StyledHamburgerButton = styled.button`
   }
 `
 
-const StyledMenu = styled.div``
+const StyledSidebar = styled.div`
+  display: none;
+  @media (max-width: 768px) {
+    ${({ theme }) => theme.mixins.flexCenter};
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    padding: 50px 10px;
+    width: min(75vw, 400px);
+    height: 100vh;
+    outline: 0;
+    background-color: var(--white);
+    box-shadow: -10px 0px 30px -15px var(--black);
+    z-index: 9;
+    transform: translateX(${props => (props.menuOpen ? 0 : 100)}vw);
+    visibility: ${props => (props.menuOpen ? "visible" : "hidden")};
+    transition: var(--transition);
+  }
+  nav {
+    ${({ theme }) => theme.mixins.flexBetween};
+    width: 100%;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    width: 100%;
+
+    li {
+      position: relative;
+      counter-increment: item 1;
+      font-size: clamp(var(--fz-sm), 4vw, var(--fz-lg));
+
+      @media (max-width: 600px) {
+        margin: 0 auto 10px;
+      }
+
+      &:before {
+        content: "0" counter(item) ".";
+        color: var(--red);
+        display: block;
+        margin-bottom: 5px;
+        font-size: var(--fz-sm);
+      }
+    }
+    a {
+      width: 100%;
+      padding: 3px 20px 20px;
+    }
+  }
+  .resume-button {
+    ${({ theme }) => theme.mixins.button}
+    padding: 18px 50px;
+    margin: 10% auto 0;
+    width: max-content;
+  }
+`
 
 export const Menu = () => {
   const [menuOpen, setMenuOpen] = useState(false)
+
+  useEffect(() => {
+    window.addEventListener("resize", onResize)
+    return () => {
+      window.removeEventListener("resize", onResize)
+    }
+  }, [])
+
+  const onResize = e => {
+    if (e.currentTarget.innerWidth > 768) {
+      setMenuOpen(false)
+    }
+  }
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen)
   }
 
+  const wrapperRef = useRef()
+  useOnClickOutside(wrapperRef, () => setMenuOpen(false))
+
   return (
-    <StyledHamburgerButton onClick={toggleMenu} menuOpen={menuOpen}>
-      <div className="ham-box">
-        <div className="ham-box-inner" />
+    <StyledMenu>
+      <div ref={wrapperRef}>
+        <StyledHamburgerButton onClick={toggleMenu} menuOpen={menuOpen}>
+          <div className="ham-box">
+            <div className="ham-box-inner" />
+          </div>
+        </StyledHamburgerButton>
+
+        <StyledSidebar menuOpen={menuOpen}>
+          <nav>
+            <ul>
+              {navLinks &&
+                navLinks.map(({ name, url }, i) => (
+                  <li key={i}>
+                    <Link to={url}>{name}</Link>
+                  </li>
+                ))}
+            </ul>
+            <div>
+              <a href="/resume.pdf" className="resume-button" target="_blank">
+                Resume
+              </a>
+            </div>
+          </nav>
+        </StyledSidebar>
       </div>
-    </StyledHamburgerButton>
+    </StyledMenu>
   )
 }

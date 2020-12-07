@@ -58,8 +58,8 @@ table {
 	--white: #FFFFFF;
 	--red: #FE5B5B; 
 	--red-tint:#FCE9E9;
-    --grey: #4A4A4A;
-    --light-grey: #767676;
+  --grey: #4A4A4A;
+  --light-grey: #767676;
 	--fz-xxs: 12px;
     --fz-xs: 13px;
     --fz-sm: 14px;

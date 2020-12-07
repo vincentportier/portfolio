@@ -54,6 +54,7 @@ const StyledLinks = styled.div`
       &:before {
         content: "0" counter(item) ".";
         margin-right: 10px;
+        color: var(--red);
         font-size: var(--fz-xxs);
       }
     }
