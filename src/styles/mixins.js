@@ -22,6 +22,9 @@ const mixins = {
     cursor: pointer;
     transition: var(--transition);
     padding: 1rem 1.5rem;
+    &:hover {
+      box-shadow: 0 10px 30px -15px var(--black);
+    }
     &:after {
       display: none !important;
     }
@@ -37,6 +40,9 @@ const mixins = {
     cursor: pointer;
     transition: var(--transition);
     padding: 0.75rem 1rem;
+    &:hover {
+      box-shadow: 0 10px 30px -15px var(--black);
+    }
     &:after {
       display: none !important;
     }
@@ -53,6 +59,9 @@ const mixins = {
     text-decoration: none;
     cursor: pointer;
     transition: var(--transition);
+    &:hover {
+      box-shadow: 0 10px 30px -15px var(--black);
+    }
     &:after {
       display: none !important;
     }

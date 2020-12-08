@@ -5,53 +5,22 @@ const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 //CSS reset
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-	box-sizing:border-box;
-	font-family:'Work Sans', sans-serif;
+html {
+    box-sizing: border-box;
+    width: 100%;
+  }
 
-	font-size:var(--fz-lg)
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+
+  ::selection {
+    background-color: var(--red);
+    color: var(--white);
+  }
+
 //variables
 :root {
 	--black: #2B2B2B;
@@ -81,31 +50,119 @@ table {
 --ham-after-active: bottom 0.1s ease-out, transform 0.22s cubic-bezier(0.215, 0.61, 0.355, 1) 0.12s;
 }
 
+body {
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    background-color: var(--white);
+    color: var(--grey);
+    font-family: "Work Sans";
+    font-size: var(--fz-xl);
+    line-height: 1.3;
+
+    @media (max-width: 480px) {
+      font-size: var(--fz-lg);
+    }
+
+    &.hidden {
+      overflow: hidden;
+    }
+
+    &.blur {
+      overflow: hidden;
+
+      header {
+        background-color: transparent;
+      }
+
+      #content > * {
+        filter: blur(5px) brightness(0.7);
+        transition: var(--transition);
+        pointer-events: none;
+        user-select: none;
+      }
+    }
+  }
+
+
 #root {
     min-height: 100vh;
     display: grid;
     grid-template-rows: 1fr auto;
     grid-template-columns: 100%;
-}
+  }
 
 main {
-margin: 0 auto;
-  width: 100%;
-  max-width: 1600px;
-  min-height: 100vh;
-  padding: 0px 150px;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1600px;
+    min-height: 100vh;
+    padding: 200px 150px;
 
-  @media (max-width: 1080px) {
-    padding: 0px 100px;
-  }
-  @media (max-width: 768px) {
-    padding: 0px 50px;
-  }
-  @media (max-width: 480px) {
-    padding: 0px 25px;
-  }
-}
+    @media (max-width: 1080px) {
+      padding: 200px 100px;
+    }
+    @media (max-width: 768px) {
+      padding: 150px 50px;
+    }
+    @media (max-width: 480px) {
+      padding: 125px 25px;
+    }
 
+    &.fillHeight {
+      padding: 0 150px;
+
+      @media (max-width: 1080px) {
+        padding: 0 100px;
+      }
+      @media (max-width: 768px) {
+        padding: 0 50px;
+      }
+      @media (max-width: 480px) {
+        padding: 0 25px;
+      }
+    }
+  }
+
+section {
+    margin: 0 auto;
+    padding: 100px 0;
+    max-width: 1000px;
+    
+
+    @media (max-width: 768px) {
+      padding: 80px 0;
+    }
+
+    @media (max-width: 480px) {
+      padding: 60px 0;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0 0 10px 0;
+    font-weight: 900;
+    color: var(--black);
+    line-height: 1.1;
+  }
+
+  .big-heading {
+    margin: 0;
+    font-size: clamp(40px, 8vw, 80px);
+  }
+
+  .medium-heading {
+    margin: 0;
+    font-size: clamp(40px, 8vw, 60px);
+  }
 
 a {
     display: inline-block;
