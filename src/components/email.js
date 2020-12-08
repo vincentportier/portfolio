@@ -13,7 +13,7 @@ const StyledEmail = styled.div`
     content: "";
     display: block;
     width: 1px;
-    height: 90px;
+    height: 40px;
     margin: 0 auto;
     background-color: var(--light-grey);
   }

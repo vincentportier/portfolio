@@ -1,8 +1,10 @@
-import React from "react"
+import React, { useState } from "react"
 import { navLinks } from "../config"
 import styled, { css } from "styled-components"
 import { Link } from "gatsby"
 import Menu from "./menu"
+import { useScrollDirection } from "../hooks/index"
+import { useEffect } from "react"
 
 //this is how you use theme in the styled components ${({theme}) => ... }
 
@@ -17,6 +19,29 @@ const StyledHeader = styled.header`
   background: var(--white);
   transform: translateY(0px);
   transition: var(--transition);
+  filter: none !important;
+  pointer-events: auto !important;
+  user-select: auto !important;
+  backdrop-filter: blur(10px);
+
+  ${props =>
+    props.scrollDirection === "up" &&
+    !props.scrolledToTop &&
+    css`
+      height: var(--nav-height-scroll);
+      transform: translateY(0px);
+      opacity: 0.85;
+      box-shadow: rgba(0, 0, 0, 0.09) 0px 6px 9px 0px;
+    `};
+
+  ${props =>
+    props.scrollDirection === "down" &&
+    !props.scrolledToTop &&
+    css`
+      height: var(--nav-height-scroll);
+      transform: translateY(calc(var(--nav-height-scroll) * -1));
+    `};
+
   @media (max-width: 1080px) {
     padding: 0 40px;
   }
@@ -71,8 +96,23 @@ const StyledLinks = styled.div`
 `
 
 const Nav = props => {
+  const scrollDirection = useScrollDirection("down")
+  const [scrolledToTop, setScrolledToTop] = useState(true)
+
+  const handleScroll = e => {
+    setScrolledToTop(window.pageYOffset < 50)
+  }
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
   return (
-    <StyledHeader>
+    <StyledHeader
+      scrollDirection={scrollDirection}
+      scrolledToTop={scrolledToTop}
+    >
       <StyledNav>
         <StyledLogo>VP</StyledLogo>
         <StyledLinks>

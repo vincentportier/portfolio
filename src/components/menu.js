@@ -132,7 +132,7 @@ const StyledSidebar = styled.div`
         display: block;
         margin-bottom: 5px;
         font-size: var(--fz-sm);
-        font-font-family: monospace;
+        font-family: monospace;
       }
     }
     a {
@@ -199,7 +199,6 @@ const Menu = () => {
   }
 
   const onKeyDown = e => {
-    console.log(e, e.shiftKey)
     switch (e.key) {
       case KEY_CODES.ESCAPE:
       case KEY_CODES.ESCAPE_IE11: {
@@ -242,7 +241,6 @@ const Menu = () => {
             <div className="ham-box-inner" />
           </div>
         </StyledHamburgerButton>
-
         <StyledSidebar
           menuOpen={menuOpen}
           aria-hidden={!menuOpen}
