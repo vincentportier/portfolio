@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { ThemeProvider } from "styled-components"
 import Nav from "./nav"
 import theme from "../styles/theme"
@@ -8,11 +8,16 @@ import Email from "./email"
 import Footer from "./footer"
 
 export const Layout = ({ children }) => {
+  const [darkMode, setDarkMode] = useState(false)
+
+  const handleToggleDarkMode = () => {
+    setDarkMode(!darkMode)
+  }
   return (
     <div id="root">
       <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Nav />
+        <GlobalStyle darkMode={darkMode} />
+        <Nav onToggleDarkMode={handleToggleDarkMode} />
         <Social />
         <Email />
         <div id="content">
