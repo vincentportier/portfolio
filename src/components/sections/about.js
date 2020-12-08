@@ -2,9 +2,25 @@ import React from "react"
 import styled from "styled-components"
 import Img from "gatsby-image"
 import { graphql, useStaticQuery } from "gatsby"
+import { skills } from "../../config"
 
-const StyledAboutSection = styled.section``
+const StyledAboutSection = styled.section`
+  max-width: 900px;
+  .inner {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    grid-gap: 50px;
+    @media (max-width: 768px) {
+      display: block;
+    }
+  }
+`
 const StyledText = styled.div`
+  font-size: var(--fz-md);
+  p {
+    margin: 0;
+    line-height: 1.6;
+  }
   ul {
     display: grid;
     grid-template-columns: repeat(2, minmax(140px, 200px));
@@ -16,21 +32,50 @@ const StyledText = styled.div`
       position: relative;
       margin-bottom: 10px;
       padding-left: 20px;
-      font-family: var(--font-mono);
-      font-size: var(--fz-xs);
+      font-size: var(--fz-md);
+      font-family: monospace;
 
       &:before {
-        content: "🧨";
+        content: "•";
         position: absolute;
         left: 0;
-        color: var(--green);
-        font-size: var(--fz-sm);
-        line-height: 12px;
+        top: 2px;
+        color: var(--red);
+        font-size: var(--fz-xs);
       }
     }
   }
 `
-const StyledAvatar = styled.div``
+const StyledAvatar = styled.div`
+  position: relative;
+  max-width: 300px;
+
+  @media (max-width: 768px) {
+    margin: 50px auto 0;
+    width: 70%;
+  }
+
+  .wrapper {
+    ${({ theme }) => theme.mixins.boxShadow};
+    display: block;
+    position: relative;
+    width: 100%;
+    border-radius: var(--border-radius);
+
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: var(--border-radius);
+      border: 2px solid var(--red);
+      top: 20px;
+      left: 20px;
+      z-index: -1;
+    }
+  }
+`
 
 const About = () => {
   const data = useStaticQuery(graphql`
@@ -67,22 +112,17 @@ const About = () => {
             </p>
           </div>
           <ul>
-            <li>skill list placeholder</li>
-            <li>skill list placeholder</li>
-            <li>skill list placeholder</li>
-            <li>skill list placeholder</li>
-            <li>skill list placeholder</li>
-            <li>skill list placeholder</li>
-            <li>skill list placeholder</li>
-            <li>skill list placeholder</li>
+            {skills && skills.map((skill, i) => <li key={i}>{skill}</li>)}
           </ul>
         </StyledText>
         <StyledAvatar>
-          <Img
-            fluid={data.avatar.childImageSharp.fluid}
-            alt="avatar"
-            className="img"
-          />
+          <div className="wrapper">
+            <Img
+              fluid={data.avatar.childImageSharp.fluid}
+              alt="avatar"
+              className="img"
+            />
+          </div>
         </StyledAvatar>
       </div>
     </StyledAboutSection>

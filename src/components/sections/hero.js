@@ -46,7 +46,7 @@ const StyledHero = styled.section`
 `
 
 const Hero = () => {
-  const one = <h1>Hey there</h1>
+  const one = <h1>Hey there 👋</h1>
   const two = <h2 className="big-heading">I'm Vincent.</h2>
   const three = <h3 className="big-heading">I love creating things 🚀</h3>
   const four = (

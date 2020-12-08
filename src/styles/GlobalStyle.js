@@ -62,6 +62,7 @@ body {
     font-family: "Work Sans";
     font-size: var(--fz-xl);
     line-height: 1.3;
+    font-weight:400;
 
     @media (max-width: 480px) {
       font-size: var(--fz-lg);
@@ -162,6 +163,48 @@ section {
   .medium-heading {
     margin: 0;
     font-size: clamp(40px, 8vw, 60px);
+  }
+
+  .numbered-heading {
+    display:flex;
+    align-items:center;
+    position:relative;
+    margin: 10px 0 40px;
+    width:100%;
+    font-size:clamp(26px, 5vw, var(--fz-heading));
+    white-space: nowrap;
+    &:before {
+      position:relative;
+      counter-increment:section;
+      content:"0"counter(section)".";
+   
+    top:4px;
+    font-family: monospace;
+    margin-right:10px;
+    color:var(--red);
+    font-size: clamp(var(--fz-md), 3vw, var(--fz-xl));
+  
+    }
+    &:after{
+      content:"";
+      position:relative;
+      display:block;
+      top:5px;
+      height:1px;
+      width: 300px;
+      background-color:var(--black);
+      margin-left:20px;
+
+@media (max-width:1080px) {
+width:200px;
+}
+@media (max-width:768px) {
+width:100%;
+}
+@media (max-width:480px) {
+margin-left:10px;
+}
+    }
   }
 
 a {

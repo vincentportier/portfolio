@@ -13,4 +13,17 @@ module.exports = {
     },
     { name: "Contact", url: "/#contact" },
   ],
+  skills: [
+    "JavaScript",
+    "HTML",
+    "CSS/Sass",
+    "React",
+    "React Router",
+    "React Redux",
+    "Moment.js",
+    "Material-UI",
+    "Git",
+    "Firebase",
+    "Netlify",
+  ],
 }
