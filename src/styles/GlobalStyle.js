@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
 html {
     box-sizing: border-box;
     width: 100%;
+    scroll-behavior: smooth;
   }
 
   *,
@@ -51,6 +52,7 @@ html {
 }
 
 body {
+  
     margin: 0;
     width: 100%;
     min-height: 100%;
@@ -75,12 +77,8 @@ body {
     &.blur {
       overflow: hidden;
 
-      header {
-        background-color: transparent;
-      }
-
       #content > * {
-        filter: blur(5px) brightness(0.7);
+        filter: blur(5px) brightness(1);
         transition: var(--transition);
         pointer-events: none;
         user-select: none;
@@ -221,6 +219,14 @@ a {
 
 	}
 }
+
+img,
+  svg,
+  .gatsby-image-wrapper {
+    width: 100%;
+    max-width: 100%;
+    vertical-align: middle;
+  }
 
 svg {
     width: 100%;

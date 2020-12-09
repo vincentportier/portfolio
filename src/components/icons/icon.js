@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import IconInstagram from "./instagram"
 import IconLinkedIn from "./linkedin"
 import IconGitHub from "./github"
+import IconExternal from "./external"
 
 const Icon = ({ name }) => {
   switch (name) {
@@ -14,6 +15,9 @@ const Icon = ({ name }) => {
       break
     case "Github":
       return <IconGitHub />
+      break
+    case "External":
+      return <IconExternal />
       break
     default:
       return <IconInstagram />

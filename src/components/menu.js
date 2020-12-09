@@ -4,6 +4,7 @@ import styled from "styled-components"
 import { navLinks } from "../config"
 import { useOnClickOutside } from "../hooks/index"
 import { KEY_CODES } from "../utils/index"
+import { Helmet } from "react-helmet"
 
 const StyledMenu = styled.div`
   display: none;
@@ -230,6 +231,9 @@ const Menu = () => {
 
   return (
     <StyledMenu>
+      <Helmet>
+        <body className={menuOpen ? "blur" : ""} />
+      </Helmet>
       <div ref={wrapperRef}>
         <StyledHamburgerButton
           onClick={toggleMenu}
@@ -260,6 +264,7 @@ const Menu = () => {
                 href="/resume.pdf"
                 className="resume-button"
                 target="_blank"
+                rel="noopener"
                 onClick={() => setMenuOpen(false)}
               >
                 Resume

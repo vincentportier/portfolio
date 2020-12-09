@@ -6,6 +6,7 @@ import { skills } from "../../config"
 
 const StyledAboutSection = styled.section`
   max-width: 900px;
+
   .inner {
     display: grid;
     grid-template-columns: 3fr 2fr;
@@ -85,7 +86,7 @@ const About = () => {
         relativePath: { eq: "avatar.jpg" }
       ) {
         childImageSharp {
-          fluid(maxWidth: 1800, traceSVG: { color: "#FFFFFF" }) {
+          fluid(maxWidth: 400, traceSVG: { color: "#FFFFFF" }) {
             ...GatsbyImageSharpFluid_withWebp_tracedSVG
           }
         }

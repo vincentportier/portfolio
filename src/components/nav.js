@@ -123,7 +123,12 @@ const Nav = props => {
             ))}
           </ul>
           <div>
-            <a href="/resume.pdf" className="resume-button" target="_blank">
+            <a
+              href="/resume.pdf"
+              className="resume-button"
+              target="_blank"
+              rel="noopener"
+            >
               Resume
             </a>
           </div>
