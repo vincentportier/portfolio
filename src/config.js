@@ -50,7 +50,7 @@ module.exports = {
       technologies: ["tech1", "tech2", "tech3"],
       external: "external link",
       github: "githublink",
-      image: "image url",
+      image: "/og.png",
     },
   ],
 }

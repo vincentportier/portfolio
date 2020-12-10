@@ -20,14 +20,72 @@ const StyledProject = styled.div`
     }
   }
 
+  &:nth-of-type(odd) {
+    .project-content {
+      grid-column: 7 / -1;
+      text-align: right;
+      @media (max-width: 1080px) {
+        grid-column: 5 / -1;
+      }
+      @media (max-width: 768px) {
+        grid-column: 1 /-1;
+        padding: 40px 25px 10px;
+      }
+      @media (max-width: 480px) {
+        padding: 25px 25px 20px;
+      }
+    }
+    .project-tech-list {
+      justify-content: flex-end;
+      li {
+        margin: 0 0 5px 20px;
+
+        @media (max-width: 768px) {
+          margin: 0 0 5px 10px;
+        }
+      }
+    }
+    .header {
+      flex-direction: row-reverse;
+    }
+
+    .project-image {
+      grid-column: 1 / 8;
+      .img {
+        transition: ease-in-out 0.25s;
+
+        &:hover {
+          transform: translateX(-50px);
+        }
+      }
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+  }
+
   .project-content {
     ${({ theme }) => theme.mixins.boxShadow};
-    grid-column: 1 / 8;
-    padding: 25px;
+    position: relative;
+    grid-column: 1 / 7;
+    grid-row: 1 / -1;
+    padding: 15px 20px;
+    background-color: var(--white);
+    z-index: 3;
+    @media (max-width: 1080px) {
+      grid-column: 1 / 9;
+    }
+    @media (max-width: 768px) {
+      grid-column: 1/-1;
+      z-index: 5;
+      background: transparent;
+      /* padding */
+    }
+    @media (max-width: 480px) {
+      /* padding */
+    }
   }
-  .project-image {
-    grid-column: 8 / -1;
-  }
+
   .header {
     ${({ theme }) => theme.mixins.flexBetween}
     align-items:center;
@@ -40,7 +98,6 @@ const StyledProject = styled.div`
   }
   .project-description {
     position: relative;
-    background-color: var(--white);
     border-radius: var(--border-radius);
     color: var(--black);
     font-size: var(--fz-xs);
@@ -70,6 +127,22 @@ const StyledProject = styled.div`
       margin: 0 10px 0 0;
       width: 20px;
       height: 20px;
+    }
+  }
+  .project-image {
+    grid-column: 6 / -1;
+    grid-row: 1 / -1;
+    position: relative;
+    z-index: 1;
+    @media (max-width: 768px) {
+      display: none;
+    }
+    .img {
+      border-radius: var(--border-radius);
+      transition: ease-in-out 0.25s;
+      &:hover {
+        transform: translateX(50px);
+      }
     }
   }
 `
