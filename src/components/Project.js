@@ -46,7 +46,11 @@ const StyledProject = styled.div`
       }
     }
     .header {
-      flex-direction: row-reverse;
+      justify-content: flex-end;
+    }
+
+    .project-links {
+      justify-content: flex-end;
     }
 
     .project-image {
@@ -160,18 +164,6 @@ const Project = ({
       <div className="project-content">
         <div className="header">
           <h3 className="project-title">{title}</h3>
-          <div className="project-links">
-            {github && (
-              <a href={github} aria-label="Github link">
-                <Icon name="Github" />
-              </a>
-            )}
-            {external && (
-              <a href={external} aria-label="Github link">
-                <Icon name="External" />
-              </a>
-            )}
-          </div>
         </div>
         <div className="project-description">{description}</div>
         {technologies.length && (
@@ -181,6 +173,18 @@ const Project = ({
             ))}
           </ul>
         )}
+        <div className="project-links">
+          {github && (
+            <a href={github} aria-label="Github link">
+              <Icon name="Github" />
+            </a>
+          )}
+          {external && (
+            <a href={external} aria-label="Github link">
+              <Icon name="External" />
+            </a>
+          )}
+        </div>
       </div>
       <div className="project-image">
         <a href={external ? external : github ? github : "#"}>

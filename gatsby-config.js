@@ -12,7 +12,7 @@ module.exports = {
     title: `Vincent Portier`,
     siteUrl: `https://www.vportier.com`,
     description: `Vincent Portier is a web developer that loves to create things that live on the internet.`,
-    image: "/overview.png",
+    image: "/og.png",
   },
 
   /* Your site config here */

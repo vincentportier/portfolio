@@ -69,18 +69,18 @@ const StyledLinks = styled.div`
     padding: 0;
     margin: 0;
     li {
-      margin: 0 5px;
+      margin: 0 15px;
       position: relative;
       counter-increment: item 1;
     }
     a {
       padding: 10px;
-      font-size: var(--fz-xs);
+      font-size: var(--fz-md);
       &:before {
         content: "0" counter(item) ".";
         margin-right: 10px;
         color: var(--red);
-        font-size: var(--fz-xxs);
+        font-size: var(--fz-xs);
         font-family: monospace;
       }
     }
