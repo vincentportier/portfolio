@@ -28,6 +28,7 @@ const Side = ({ children, orientation }) => {
     const timeout = setTimeout(() => setIsMounted(true), loaderDelay)
     return () => clearTimeout(timeout)
   }, [])
+
   return (
     <StyledSideElement orientation={orientation}>
       <TransitionGroup component={null}>
