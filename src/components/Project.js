@@ -158,9 +158,10 @@ const Project = ({
   github,
   external,
   image,
+  myRef,
 }) => {
   return (
-    <StyledProject>
+    <StyledProject ref={myRef}>
       <div className="project-content">
         <div className="header">
           <h3 className="project-title">{title}</h3>

@@ -1,6 +1,8 @@
-import React from "react"
+import React, { useEffect, useRef } from "react"
 import { email } from "../../config"
 import styled from "styled-components"
+import sr from "../../utils/sr"
+import { srConfig } from "../../config"
 
 const StyledContactSection = styled.section`
   max-width: 600px;
@@ -51,8 +53,11 @@ const StyledContactSection = styled.section`
 `
 
 const Contact = () => {
+  const revealContainer = useRef(null)
+  useEffect(() => sr.reveal(revealContainer.current, srConfig()), [])
+
   return (
-    <StyledContactSection id="contact">
+    <StyledContactSection id="contact" ref={revealContainer}>
       <h2 className="overline">Contact</h2>
       <h2 className="title">Say Hello!</h2>
       <p>

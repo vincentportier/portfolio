@@ -3,6 +3,9 @@ import styled from "styled-components"
 import Img from "gatsby-image"
 import { graphql, useStaticQuery } from "gatsby"
 import { skills } from "../../config"
+import sr from "../../utils/sr"
+import { srConfig } from "../../config"
+import { useEffect, useRef } from "react"
 
 const StyledAboutSection = styled.section`
   max-width: 900px;
@@ -93,8 +96,15 @@ const About = () => {
       }
     }
   `)
+
+  const revealContainer = useRef(null)
+
+  useEffect(() => {
+    sr.reveal(revealContainer.current, srConfig())
+  }, [])
+
   return (
-    <StyledAboutSection id="about">
+    <StyledAboutSection id="about" className="about" ref={revealContainer}>
       <h2 className="numbered-heading">About me</h2>
       <div className="inner">
         <StyledText>
