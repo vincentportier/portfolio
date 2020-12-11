@@ -30,7 +30,7 @@ const Head = ({ title, description, image }) => {
   const seo = {
     title: title || defaultTitle,
     description: description || defaultDescription,
-    image: `${siteUrl}${image || defaultImage}`,
+    image: `${siteUrl}${defaultImage}`,
     url: `${siteUrl}${pathname}`,
   }
 
