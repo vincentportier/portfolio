@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components"
+import TransitionStyles from "./TransitionStyles"
 
 const GlobalStyle = createGlobalStyle`
 
@@ -234,6 +235,8 @@ svg {
     fill: currentColor;
     vertical-align: middle;
   }
+
+  ${TransitionStyles}
 
 `
 

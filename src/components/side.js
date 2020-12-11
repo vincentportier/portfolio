@@ -1,5 +1,7 @@
-import React from "react"
-import { useEffect } from "react"
+import React, { useState, useEffect } from "react"
+
+import { CSSTransition, TransitionGroup } from "react-transition-group"
+import { loaderDelay } from "../utils/index"
 import styled from "styled-components"
 
 const StyledSideElement = styled.div`
@@ -20,8 +22,22 @@ const StyledSideElement = styled.div`
 `
 
 const Side = ({ children, orientation }) => {
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setIsMounted(true), loaderDelay)
+    return () => clearTimeout(timeout)
+  }, [])
   return (
-    <StyledSideElement orientation={orientation}>{children}</StyledSideElement>
+    <StyledSideElement orientation={orientation}>
+      <TransitionGroup component={null}>
+        {isMounted && (
+          <CSSTransition classNames="fade" timeout={loaderDelay}>
+            {children}
+          </CSSTransition>
+        )}
+      </TransitionGroup>
+    </StyledSideElement>
   )
 }
 

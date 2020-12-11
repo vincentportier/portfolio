@@ -1,6 +1,8 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import { email } from "../../config"
+import { CSSTransition, TransitionGroup } from "react-transition-group"
+import { loaderDelay, navDelay } from "../../utils/index"
 
 const StyledHero = styled.section`
   ${({ theme }) => theme.mixins.flexCenter};
@@ -46,6 +48,13 @@ const StyledHero = styled.section`
 `
 
 const Hero = () => {
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setIsMounted(true), navDelay)
+    return () => clearTimeout(timeout)
+  }, [])
+
   const one = <h1>Hey there 👋</h1>
   const two = <h2 className="big-heading">I'm Vincent.</h2>
   const three = <h3 className="big-heading">I love creating things 🚀</h3>
@@ -64,10 +73,16 @@ const Hero = () => {
   const items = [one, two, three, four, five]
   return (
     <StyledHero>
-      {items &&
-        items.map((item, i) => {
-          return <div key={i}>{item}</div>
-        })}
+      <TransitionGroup component={null}>
+        {isMounted &&
+          items.map((item, i) => {
+            return (
+              <CSSTransition key={i} classNames="fade" timeout={loaderDelay}>
+                <div style={{ transitionDelay: `${i + 1}00ms` }}>{item}</div>
+              </CSSTransition>
+            )
+          })}
+      </TransitionGroup>
     </StyledHero>
   )
 }

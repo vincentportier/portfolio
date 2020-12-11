@@ -10,3 +10,6 @@ export const KEY_CODES = {
   SPACE_IE11: "Spacebar",
   ENTER: "Enter",
 }
+
+export const navDelay = 1000
+export const loaderDelay = 2000

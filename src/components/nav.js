@@ -5,6 +5,8 @@ import { Link } from "gatsby"
 import Menu from "./menu"
 import { useScrollDirection } from "../hooks/index"
 import { useEffect } from "react"
+import { TransitionGroup, CSSTransition } from "react-transition-group"
+import { loaderDelay } from "../utils/index"
 
 //this is how you use theme in the styled components ${({theme}) => ... }
 
@@ -97,6 +99,7 @@ const StyledLinks = styled.div`
 const Nav = props => {
   const scrollDirection = useScrollDirection("down")
   const [scrolledToTop, setScrolledToTop] = useState(true)
+  const [isMounted, setIsMounted] = useState(false)
 
   const handleScroll = e => {
     setScrolledToTop(window.pageYOffset < 50)
@@ -107,34 +110,67 @@ const Nav = props => {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  useEffect(() => {
+    const timeout = setTimeout(() => setIsMounted(true), 100)
+    return () => clearTimeout(timeout)
+  }, [])
+
+  const timeout = loaderDelay
+
   return (
     <StyledHeader
       scrollDirection={scrollDirection}
       scrolledToTop={scrolledToTop}
     >
       <StyledNav>
-        <StyledLogo>VP</StyledLogo>
+        <TransitionGroup component={null}>
+          {isMounted && (
+            <CSSTransition classNames="fade" timeout={timeout}>
+              <StyledLogo>VP</StyledLogo>
+            </CSSTransition>
+          )}
+        </TransitionGroup>
         <StyledLinks>
           <ul>
-            {navLinks.map(({ name, url }, i) => (
-              <li key={i}>
-                <Link to={url}>{name}</Link>
-              </li>
-            ))}
+            <TransitionGroup component={null}>
+              {isMounted &&
+                navLinks &&
+                navLinks.map(({ name, url }, i) => (
+                  <CSSTransition
+                    key={i}
+                    timeout={timeout}
+                    classNames="fadedown"
+                  >
+                    <li key={i} style={{ transitionDelay: `${i * 100}ms` }}>
+                      <Link to={url}>{name}</Link>
+                    </li>
+                  </CSSTransition>
+                ))}
+            </TransitionGroup>
           </ul>
-          <div>
-            <a
-              href="/resume.pdf"
-              className="resume-button"
-              target="_blank"
-              rel="noopener"
-            >
-              Resume
-            </a>
-          </div>
+          <TransitionGroup component={null}>
+            {isMounted && (
+              <CSSTransition classNames="fadedown" timeout={timeout}>
+                <div style={{ transitionDelay: `${navLinks.length * 100}ms` }}>
+                  <a
+                    href="/resume.pdf"
+                    className="resume-button"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    Resume
+                  </a>
+                </div>
+              </CSSTransition>
+            )}
+          </TransitionGroup>
         </StyledLinks>
       </StyledNav>
-      <Menu />
+      <TransitionGroup component={null}>
+        <CSSTransition timeout={timeout} classNames="fadedown">
+          <Menu />
+        </CSSTransition>
+      </TransitionGroup>
     </StyledHeader>
   )
 }

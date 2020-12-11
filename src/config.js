@@ -13,7 +13,7 @@ module.exports = {
     },
     { name: "Contact", url: "/#contact" },
   ],
-  srConfig: (delay = 600, viewFactor = 0.25) => ({
+  srConfig: (delay = 500, viewFactor = 0.25) => ({
     delay,
     distance: "0px",
     duration: 600,

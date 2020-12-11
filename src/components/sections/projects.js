@@ -9,9 +9,9 @@ const Projects = () => {
   const revealProjects = useRef([])
 
   useEffect(() => {
-    sr.reveal(revealTitle.current, srConfig(400))
+    sr.reveal(revealTitle.current, srConfig())
     revealProjects.current.forEach((ref, i) =>
-      sr.reveal(ref, srConfig(500 + i * 100, 0.3))
+      sr.reveal(ref, srConfig(500 + i * 100, 0.25))
     )
   }, [])
 
