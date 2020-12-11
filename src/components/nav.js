@@ -167,9 +167,11 @@ const Nav = props => {
         </StyledLinks>
       </StyledNav>
       <TransitionGroup component={null}>
-        <CSSTransition timeout={timeout} classNames="fadedown">
-          <Menu />
-        </CSSTransition>
+        {isMounted && (
+          <CSSTransition timeout={timeout} classNames="fadedown">
+            <Menu />
+          </CSSTransition>
+        )}
       </TransitionGroup>
     </StyledHeader>
   )
