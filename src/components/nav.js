@@ -7,6 +7,7 @@ import { useScrollDirection } from "../hooks/index"
 import { useEffect } from "react"
 import { TransitionGroup, CSSTransition } from "react-transition-group"
 import { loaderDelay } from "../utils/index"
+import DarkMode from "./darkmode"
 
 //this is how you use theme in the styled components ${({theme}) => ... }
 
@@ -57,7 +58,7 @@ const StyledNav = styled.nav`
   ${({ theme }) => theme.mixins.flexBetween}
 `
 
-const StyledLogo = styled.div`
+const StyledLogo = styled(Link)`
   font-family: "Montserrat", sans-serif;
   font-weight: 900;
   color: var(--black);
@@ -96,7 +97,7 @@ const StyledLinks = styled.div`
   }
 `
 
-const Nav = props => {
+const Nav = ({ onToggleDarkMode, darkMode }) => {
   const scrollDirection = useScrollDirection("down")
   const [scrolledToTop, setScrolledToTop] = useState(true)
   const [isMounted, setIsMounted] = useState(false)
@@ -126,10 +127,11 @@ const Nav = props => {
         <TransitionGroup component={null}>
           {isMounted && (
             <CSSTransition classNames="fade" timeout={timeout}>
-              <StyledLogo>VP</StyledLogo>
+              <StyledLogo to="/">VP</StyledLogo>
             </CSSTransition>
           )}
         </TransitionGroup>
+
         <StyledLinks>
           <ul>
             <TransitionGroup component={null}>
@@ -164,12 +166,13 @@ const Nav = props => {
               </CSSTransition>
             )}
           </TransitionGroup>
+          <DarkMode onToggleDarkMode={onToggleDarkMode} darkMode={darkMode} />
         </StyledLinks>
       </StyledNav>
       <TransitionGroup component={null}>
         {isMounted && (
           <CSSTransition timeout={timeout} classNames="fadedown">
-            <Menu />
+            <Menu onToggleDarkMode={onToggleDarkMode} darkMode={darkMode} />
           </CSSTransition>
         )}
       </TransitionGroup>

@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components"
 import TransitionStyles from "./TransitionStyles"
+import { css } from "styled-components"
 
 const GlobalStyle = createGlobalStyle`
 
@@ -25,12 +26,25 @@ html {
 
 //variables
 :root {
-	--black: #2B2B2B;
-	--white: #FFFFFF;
-	--red: #FE5B5B; 
-	--red-tint:#FCE9E9;
-  --grey: #4A4A4A;
-  --light-grey: #767676;
+${props =>
+  props.darkMode
+    ? css`
+        --black: #ccd6f6;
+        --white: #020c1b;
+        --red: #64ffda;
+        --red-tint: #fce9e9;
+        --grey: #8892b0;
+        --light-grey: #8892b0;
+      `
+    : css`
+        --black: #2b2b2b;
+        --white: #ffffff;
+        --red: #fe5b5b;
+        --red-tint: #fce9e9;
+        --grey: #4a4a4a;
+        --light-grey: #767676;
+      `}
+
 	--fz-xxs: 12px;
     --fz-xs: 13px;
     --fz-sm: 14px;

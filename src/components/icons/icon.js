@@ -5,8 +5,10 @@ import IconLinkedIn from "./linkedin"
 import IconGitHub from "./github"
 import IconExternal from "./external"
 import IconCodeWar from "./codewar"
+import IconSun from "./sun"
+import IconMoon from "./moon"
 
-const Icon = ({ name }) => {
+const Icon = ({ name, className }) => {
   switch (name) {
     case "Instagram":
       return <IconInstagram />
@@ -23,8 +25,14 @@ const Icon = ({ name }) => {
     case "CodeWar":
       return <IconCodeWar />
       break
+    case "Sun":
+      return <IconSun className={className} />
+      break
+    case "Moon":
+      return <IconMoon className={className} />
+      break
     default:
-      return <IconInstagram />
+      break
   }
 }
 

@@ -21,7 +21,7 @@ export const Layout = ({ children }) => {
       <div id="root">
         <ThemeProvider theme={theme}>
           <GlobalStyle darkMode={darkMode} />
-          <Nav onToggleDarkMode={handleToggleDarkMode} />
+          <Nav onToggleDarkMode={handleToggleDarkMode} darkMode={darkMode} />
           <Social />
           <Email />
           <div id="content">

@@ -66,6 +66,7 @@ const mixins = {
       display: none !important;
     }
   `,
+
   boxShadow: css`
     box-shadow: 0 10px 30px -15px var(--black);
     transition: var(--transition);

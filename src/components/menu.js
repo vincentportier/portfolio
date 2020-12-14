@@ -5,6 +5,7 @@ import { navLinks } from "../config"
 import { useOnClickOutside } from "../hooks/index"
 import { KEY_CODES } from "../utils/index"
 import { Helmet } from "react-helmet"
+import DarkMode from "./darkmode"
 
 const StyledMenu = styled.div`
   display: none;
@@ -147,9 +148,16 @@ const StyledSidebar = styled.div`
     margin: 10% auto 0;
     width: max-content;
   }
+
+  .theme-switch-wrapper {
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+  }
 `
 
-const Menu = () => {
+const Menu = ({ darkMode, onToggleDarkMode }) => {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const hamburgerRef = useRef()
@@ -269,6 +277,10 @@ const Menu = () => {
               >
                 Resume
               </a>
+              <DarkMode
+                onToggleDarkMode={onToggleDarkMode}
+                darkMode={darkMode}
+              />
             </div>
           </nav>
         </StyledSidebar>
