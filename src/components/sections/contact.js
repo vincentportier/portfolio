@@ -54,6 +54,7 @@ const StyledContactSection = styled.section`
 `
 
 const StyledForm = styled.form`
+  margin-top: 50px;
   label {
     display: block;
     font-size: var(--fz-xxs);
@@ -135,6 +136,7 @@ const Contact = () => {
           </label>
           <input
             type="text"
+            id="name"
             name="name"
             value={name}
             onChange={e => handleChange(e)}
@@ -146,6 +148,7 @@ const Contact = () => {
           <label for="email">Email:</label>
           <input
             type="email"
+            id="email"
             name="email"
             value={email}
             onChange={e => handleChange(e)}
@@ -157,6 +160,7 @@ const Contact = () => {
           <label for="message">Message:</label>
           <textarea
             name="message"
+            id="message"
             value={message}
             onChange={e => handleChange(e)}
             rows={6}
