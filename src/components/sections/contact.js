@@ -104,6 +104,11 @@ const Contact = () => {
         method="POST"
         data-netlify="true"
       >
+        <input
+          type="hidden"
+          name="subject"
+          value={`${name} sent you a message on vportier.com`}
+        />
         <p>
           <label>
             Your Name:{" "}
