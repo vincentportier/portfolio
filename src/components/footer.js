@@ -53,7 +53,12 @@ const Footer = () => {
           {socialMedia &&
             socialMedia.map(({ url, name }, i) => (
               <li key={i}>
-                <a href={url} target="_blank" rel="noopener">
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={name}
+                >
                   <Icon name={name} />
                 </a>
               </li>

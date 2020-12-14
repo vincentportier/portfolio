@@ -151,7 +151,7 @@ const StyledSidebar = styled.div`
 
   .theme-switch-wrapper {
     position: fixed;
-    bottom: 10px;
+    bottom: 30px;
     left: 0;
     right: 0;
   }
