@@ -3,6 +3,7 @@ import { email } from "../../config"
 import styled from "styled-components"
 import sr from "../../utils/sr"
 import { srConfig } from "../../config"
+import { navigate } from "gatsby"
 
 const StyledContactSection = styled.section`
   max-width: 600px;
@@ -50,6 +51,18 @@ const StyledContactSection = styled.section`
       margin-top: 15px;
     }
   }
+
+  form {
+    button {
+      margin-top: 30px;
+      ${({ theme }) => theme.mixins.bigButton}
+      ${({ theme }) => theme.mixins.boxShadow}
+    @media (max-width:768px) {
+        ${({ theme }) => theme.mixins.button}
+        margin-top: 15px;
+      }
+    }
+  }
 `
 
 const Contact = () => {
@@ -72,7 +85,10 @@ const Contact = () => {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({ "form-name": "contact", ...state }),
     })
-      .then(() => alert("Success!"))
+      .then(() => {
+        setState({ name: "", email: "", message: "" })
+        navigate("/thanks/")
+      })
       .catch(error => alert(error))
 
     e.preventDefault()
@@ -91,13 +107,10 @@ const Contact = () => {
       <h2 className="overline">Contact</h2>
       <h2 className="title">Say Hello!</h2>
       <p>
-        Although I'm not currently looking for any new opportunities, my inbox
-        is always open. Whether you have a question or just want to say hi, I'll
-        try my best to get back to you!
+        I'm currently looking for a new opportunity. Whether you are interested
+        in my profile, or just want to say Hi, send me a line and I'll get back
+        to you as soon as possible!
       </p>
-      <a className="email-link" href={`mailto:${email}`}>
-        Message me
-      </a>
       <form
         onSubmit={e => handleSubmit(e)}
         name="contact"
@@ -142,7 +155,9 @@ const Contact = () => {
           </label>
         </p>
         <p>
-          <button type="submit">Send</button>
+          <button type="submit" className="email-link">
+            Message me
+          </button>
         </p>
       </form>
     </StyledContactSection>
