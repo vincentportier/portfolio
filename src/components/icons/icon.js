@@ -4,6 +4,7 @@ import IconInstagram from "./instagram"
 import IconLinkedIn from "./linkedin"
 import IconGitHub from "./github"
 import IconExternal from "./external"
+import IconCodeWar from "./codewar"
 
 const Icon = ({ name }) => {
   switch (name) {
@@ -18,6 +19,9 @@ const Icon = ({ name }) => {
       break
     case "External":
       return <IconExternal />
+      break
+    case "CodeWar":
+      return <IconCodeWar />
       break
     default:
       return <IconInstagram />

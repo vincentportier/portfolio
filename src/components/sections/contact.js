@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { email } from "../../config"
 import styled from "styled-components"
 import sr from "../../utils/sr"
@@ -54,7 +54,37 @@ const StyledContactSection = styled.section`
 
 const Contact = () => {
   const revealContainer = useRef(null)
+  const [state, setState] = useState({
+    name: "",
+    email: "",
+    message: "",
+  })
+
+  const encode = data => {
+    return Object.keys(data)
+      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+      .join("&")
+  }
+
+  const handleSubmit = e => {
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({ "form-name": "contact", ...state }),
+    })
+      .then(() => alert("Success!"))
+      .catch(error => alert(error))
+
+    e.preventDefault()
+  }
+
+  const handleChange = e => {
+    setState({ ...state, [e.target.name]: e.target.value })
+  }
+
   useEffect(() => sr.reveal(revealContainer.current, srConfig()), [])
+
+  const { name, email, message } = state
 
   return (
     <StyledContactSection id="contact" ref={revealContainer}>
@@ -68,6 +98,48 @@ const Contact = () => {
       <a className="email-link" href={`mailto:${email}`}>
         Message me
       </a>
+      <form
+        onSubmit={e => handleSubmit(e)}
+        name="contact"
+        method="POST"
+        data-netlify="true"
+      >
+        <p>
+          <label>
+            Your Name:{" "}
+            <input
+              type="text"
+              name="name"
+              value={name}
+              onChange={e => handleChange(e)}
+            />
+          </label>
+        </p>
+        <p>
+          <label>
+            Your Email:{" "}
+            <input
+              type="email"
+              name="email"
+              value={email}
+              onChange={e => handleChange(e)}
+            />
+          </label>
+        </p>
+        <p>
+          <label>
+            Message:{" "}
+            <textarea
+              name="message"
+              value={message}
+              onChange={e => handleChange(e)}
+            />
+          </label>
+        </p>
+        <p>
+          <button type="submit">Send</button>
+        </p>
+      </form>
     </StyledContactSection>
   )
 }

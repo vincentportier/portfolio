@@ -3,6 +3,7 @@ module.exports = {
   socialMedia: [
     { name: "Github", url: "https://github.com/vincentportier" },
     { name: "LinkedIn", url: "https://linkedin.com/in/portiervincent" },
+    { name: "CodeWar", url: "https://www.codewars.com/users/vincentportier" },
     { name: "Instagram", url: "https://www.instagram.com/letsgosmwhr/" },
   ],
   navLinks: [
