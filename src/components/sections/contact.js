@@ -42,7 +42,7 @@ const StyledContactSection = styled.section`
     color: var(--light-grey);
   }
 
-  .email-link {
+  .email-button {
     margin-top: 30px;
     ${({ theme }) => theme.mixins.bigButton}
     ${({ theme }) => theme.mixins.boxShadow}
@@ -51,17 +51,29 @@ const StyledContactSection = styled.section`
       margin-top: 15px;
     }
   }
+`
 
-  form {
-    button {
-      margin-top: 30px;
-      ${({ theme }) => theme.mixins.bigButton}
-      ${({ theme }) => theme.mixins.boxShadow}
-    @media (max-width:768px) {
-        ${({ theme }) => theme.mixins.button}
-        margin-top: 15px;
-      }
+const StyledForm = styled.form`
+  label {
+    display: block;
+    font-size: var(--fz-xxs);
+    margin-bottom: 5px;
+  }
+  input,
+  textarea {
+    color: var(--light-grey);
+    width: 80%;
+    font-family: "Work Sans";
+    &::placeholder {
+      color: var(--light-grey);
+      font-family: monospace;
     }
+  }
+  input {
+    padding: 5px 10px;
+  }
+  textarea {
+    padding: 15px 10px;
   }
 `
 
@@ -111,55 +123,51 @@ const Contact = () => {
         in my profile, or just want to say Hi, send me a line and I'll get back
         to you as soon as possible!
       </p>
-      <form
+      <StyledForm
         onSubmit={e => handleSubmit(e)}
         name="contact"
         method="POST"
         data-netlify="true"
       >
-        <input
-          type="hidden"
-          name="subject"
-          value={`${name} sent you a message on vportier.com`}
-        />
         <p>
-          <label>
-            Your Name:{" "}
-            <input
-              type="text"
-              name="name"
-              value={name}
-              onChange={e => handleChange(e)}
-            />
+          <label for="name" required>
+            Name:
           </label>
+          <input
+            type="text"
+            name="name"
+            value={name}
+            onChange={e => handleChange(e)}
+            placeholder="Name"
+            required
+          />
         </p>
         <p>
-          <label>
-            Your Email:{" "}
-            <input
-              type="email"
-              name="email"
-              value={email}
-              onChange={e => handleChange(e)}
-            />
-          </label>
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            name="email"
+            value={email}
+            onChange={e => handleChange(e)}
+            placeholder="Email"
+            required
+          />
         </p>
         <p>
-          <label>
-            Message:{" "}
-            <textarea
-              name="message"
-              value={message}
-              onChange={e => handleChange(e)}
-            />
-          </label>
+          <label for="message">Message:</label>
+          <textarea
+            name="message"
+            value={message}
+            onChange={e => handleChange(e)}
+            rows={6}
+            placeholder="Your message ..."
+            required
+          />
         </p>
-        <p>
-          <button type="submit" className="email-link">
-            Message me
-          </button>
-        </p>
-      </form>
+        <button type="submit" className="email-button">
+          Message me
+        </button>
+      </StyledForm>
     </StyledContactSection>
   )
 }
