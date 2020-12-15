@@ -54,7 +54,13 @@ module.exports = {
       title: "vportier.com",
       description:
         "First iteration of my personal website built with React and hosted on Netlify.",
-      technologies: ["React", "Gatsby", "Styled Components", "Hooks"],
+      technologies: [
+        "React",
+        "Gatsby",
+        "Styled Components",
+        "Hooks",
+        "Context",
+      ],
       external: "https://vportier.com",
       github: "https://github.com/vincentportier/portfolio",
       image: "/og.png",
@@ -90,8 +96,7 @@ module.exports = {
       description:
         "Each FreeCodeCamp certification requires to complete 5 projects to finalise the course. I have built 15 projects, including static webpages, a random quote generator, a pomodoro clock, a calculator, a markdown text editor and a drum-machine.",
       technologies: ["HTML", "CSS", "Javascript", "React", "Redux"],
-      external: "https://calculator-js-fcc.netlify.app/",
-      github: "https://github.com/vincentportier",
+      github: "https://github.com/vincentportier/FreeCodeCamp",
       image: "/fcc.png",
     },
   ],
