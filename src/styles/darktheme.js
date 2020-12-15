@@ -1,4 +1,5 @@
 import mixins from "./mixins"
+import { css } from "styled-components"
 
 const darktheme = {
   bp: {
@@ -13,6 +14,14 @@ const darktheme = {
     desktopL: `max-width: 1400px`,
   },
   mixins,
+  colors: css`
+    --black: #ccd6f6;
+    --white: #020c1b;
+    --red: #64ffda;
+    --red-tint: #fce9e9;
+    --grey: #8892b0;
+    --light-grey: #8892b0;
+  `,
 }
 
 export default darktheme
