@@ -4,7 +4,8 @@ import PropTypes from "prop-types"
 export const DarkModeContext = createContext()
 
 export const DarkModeProvider = ({ children }) => {
-  const storedDarkMode = localStorage.getItem("DARK_MODE")
+  const storedDarkMode =
+    typeof window !== "undefined" && window.localStorage.getItem("DARK_MODE")
 
   const [darkMode, setDarkMode] = useState(
     storedDarkMode === null ? false : storedDarkMode === "true" ? true : false
