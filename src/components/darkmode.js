@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import Icon from "./icons/icon"
 import { css } from "styled-components"
+import { useDarkModeValue } from "../context/index"
 
 const StyledSwitch = styled.div`
   margin-left: 20px;
@@ -84,7 +85,9 @@ const StyledSwitch = styled.div`
   }
 `
 
-const DarkMode = ({ onToggleDarkMode, darkMode }) => {
+const DarkMode = () => {
+  const { darkMode, toggleDarkMode } = useDarkModeValue()
+
   return (
     <StyledSwitch className="theme-switch-wrapper" darkMode={darkMode}>
       <Icon name="Sun" className="sun" />
@@ -93,7 +96,7 @@ const DarkMode = ({ onToggleDarkMode, darkMode }) => {
           type="checkbox"
           id="darkmode-checkbox"
           checked={darkMode}
-          onChange={() => onToggleDarkMode()}
+          onChange={toggleDarkMode}
         />
         <div className="slider round"></div>
       </label>

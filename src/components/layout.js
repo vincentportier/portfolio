@@ -7,21 +7,17 @@ import Social from "./social"
 import Email from "./email"
 import Footer from "./footer"
 import Head from "./head"
+import { useDarkModeValue } from "../context"
 
 export const Layout = ({ children }) => {
-  const [darkMode, setDarkMode] = useState(false)
-
-  const handleToggleDarkMode = () => {
-    setDarkMode(!darkMode)
-  }
-
+  const { darkMode } = useDarkModeValue()
   return (
     <>
       <Head />
       <div id="root">
         <ThemeProvider theme={theme}>
           <GlobalStyle darkMode={darkMode} />
-          <Nav onToggleDarkMode={handleToggleDarkMode} darkMode={darkMode} />
+          <Nav />
           <Social />
           <Email />
           <div id="content">

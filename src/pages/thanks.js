@@ -3,6 +3,7 @@ import Layout from "../components/layout"
 import styled from "styled-components"
 import Helmet from "react-helmet"
 import { Link } from "gatsby"
+import { DarkModeProvider } from "../context"
 
 const StyledContent = styled.main`
   display: flex;
@@ -23,14 +24,17 @@ const StyledHomeButton = styled(Link)`
 
 export default function ThankYouPage() {
   return (
-    <Layout>
-      <Helmet title="Thanks for your message" />
-      <StyledContent className="fillHeight">
-        <h1 className="small-heading">
-          Thank you for your message, I'll get back to you as soon as possible!
-        </h1>
-        <StyledHomeButton to="/">Go back home</StyledHomeButton>
-      </StyledContent>
-    </Layout>
+    <DarkModeProvider>
+      <Layout>
+        <Helmet title="Thanks for your message" />
+        <StyledContent className="fillHeight">
+          <h1 className="small-heading">
+            Thank you for your message, I'll get back to you as soon as
+            possible!
+          </h1>
+          <StyledHomeButton to="/">Go back home</StyledHomeButton>
+        </StyledContent>
+      </Layout>
+    </DarkModeProvider>
   )
 }

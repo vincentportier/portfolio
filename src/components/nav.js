@@ -97,7 +97,7 @@ const StyledLinks = styled.div`
   }
 `
 
-const Nav = ({ onToggleDarkMode, darkMode }) => {
+const Nav = () => {
   const scrollDirection = useScrollDirection("down")
   const [scrolledToTop, setScrolledToTop] = useState(true)
   const [isMounted, setIsMounted] = useState(false)
@@ -174,10 +174,7 @@ const Nav = ({ onToggleDarkMode, darkMode }) => {
                     transitionDelay: `${navLinks.length * 100 + 100}ms`,
                   }}
                 >
-                  <DarkMode
-                    onToggleDarkMode={onToggleDarkMode}
-                    darkMode={darkMode}
-                  />
+                  <DarkMode />
                 </div>
               </CSSTransition>
             )}
@@ -187,7 +184,7 @@ const Nav = ({ onToggleDarkMode, darkMode }) => {
       <TransitionGroup component={null}>
         {isMounted && (
           <CSSTransition timeout={timeout} classNames="fadedown">
-            <Menu onToggleDarkMode={onToggleDarkMode} darkMode={darkMode} />
+            <Menu />
           </CSSTransition>
         )}
       </TransitionGroup>

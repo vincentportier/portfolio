@@ -154,7 +154,7 @@ const StyledSidebar = styled.div`
   }
 `
 
-const Menu = ({ darkMode, onToggleDarkMode }) => {
+const Menu = () => {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const hamburgerRef = useRef()
@@ -274,10 +274,7 @@ const Menu = ({ darkMode, onToggleDarkMode }) => {
               >
                 Resume
               </a>
-              <DarkMode
-                onToggleDarkMode={onToggleDarkMode}
-                darkMode={darkMode}
-              />
+              <DarkMode />
             </div>
           </nav>
         </StyledSidebar>
