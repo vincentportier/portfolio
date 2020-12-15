@@ -101,8 +101,8 @@ const Contact = () => {
       body: encode({ "form-name": "contact", ...state }),
     })
       .then(() => {
-        setState({ name: "", email: "", message: "" })
         navigate("/thanks/")
+        setState({ name: "", email: "", message: "" })
       })
       .catch(error => alert(error))
 

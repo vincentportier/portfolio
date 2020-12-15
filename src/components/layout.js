@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { ThemeProvider } from "styled-components"
 import Nav from "./nav"
 import theme from "../styles/theme"
+import darktheme from "../styles/darktheme"
 import GlobalStyle from "../styles/GlobalStyle"
 import Social from "./social"
 import Email from "./email"
@@ -15,7 +16,7 @@ export const Layout = ({ children }) => {
     <>
       <Head />
       <div id="root">
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={darkMode ? darktheme : theme}>
           <GlobalStyle darkMode={darkMode} />
           <Nav />
           <Social />
