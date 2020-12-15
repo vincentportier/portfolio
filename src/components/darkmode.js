@@ -88,7 +88,7 @@ const DarkMode = ({ onToggleDarkMode, darkMode }) => {
   return (
     <StyledSwitch className="theme-switch-wrapper" darkMode={darkMode}>
       <Icon name="Sun" className="sun" />
-      <label className="theme-switch" for="darkmode-checkbox">
+      <label className="theme-switch">
         <input
           type="checkbox"
           id="darkmode-checkbox"

@@ -269,7 +269,7 @@ const Menu = ({ darkMode, onToggleDarkMode }) => {
                 href="/resume.pdf"
                 className="resume-button"
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
                 onClick={() => setMenuOpen(false)}
               >
                 Resume

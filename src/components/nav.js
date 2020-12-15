@@ -158,7 +158,7 @@ const Nav = ({ onToggleDarkMode, darkMode }) => {
                     href="/resume.pdf"
                     className="resume-button"
                     target="_blank"
-                    rel="noopener"
+                    rel="noopener noreferrer"
                   >
                     Resume
                   </a>

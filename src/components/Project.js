@@ -176,19 +176,33 @@ const Project = ({
         )}
         <div className="project-links">
           {github && (
-            <a href={github} aria-label="Github link">
+            <a
+              href={github}
+              aria-label="Github link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Icon name="Github" />
             </a>
           )}
           {external && (
-            <a href={external} aria-label="Github link">
+            <a
+              href={external}
+              aria-label="Github link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Icon name="External" />
             </a>
           )}
         </div>
       </div>
       <div className="project-image">
-        <a href={external ? external : github ? github : "#"}>
+        <a
+          href={external ? external : github ? github : "#"}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img src={image} alt={title} className="img" />
         </a>
       </div>
