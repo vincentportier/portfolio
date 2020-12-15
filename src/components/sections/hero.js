@@ -75,7 +75,7 @@ const Hero = () => {
   const four = (
     <p>
       I'm a French web developer currently living in Australia and seeking a
-      full-time opportunity back in France !
+      full-time opportunity!
     </p>
   )
   const five = (
