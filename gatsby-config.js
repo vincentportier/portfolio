@@ -9,9 +9,9 @@ const path = require(`path`)
 module.exports = {
   //Site Metadata
   siteMetadata: {
-    title: `Vincent Portier`,
-    siteUrl: `https://www.vportier.com`,
-    description: `Vincent Portier is a web developer that loves to create things that live on the internet.`,
+    title: `Vincent Portier | Developer Portfolio`,
+    siteUrl: `https://vportier.com`,
+    description: `I create things that live on the internet, whether that be websites, applications, or anything in between`,
     image: "/og.png",
   },
 
