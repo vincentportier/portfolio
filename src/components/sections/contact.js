@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react"
-import { email } from "../../config"
 import styled from "styled-components"
 import sr from "../../utils/sr"
 import { srConfig } from "../../config"
@@ -55,8 +54,11 @@ const StyledContactSection = styled.section`
 
 const StyledForm = styled.form`
   margin-top: 50px;
+
   label {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     font-size: var(--fz-xxs);
     margin-bottom: 5px;
   }
@@ -131,42 +133,46 @@ const Contact = () => {
         data-netlify="true"
       >
         <p>
-          <label for="name" required>
+          <label>
             Name:
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={name}
+              onChange={e => handleChange(e)}
+              placeholder="Name"
+              required
+            />
           </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={name}
-            onChange={e => handleChange(e)}
-            placeholder="Name"
-            required
-          />
         </p>
         <p>
-          <label for="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={email}
-            onChange={e => handleChange(e)}
-            placeholder="Email"
-            required
-          />
+          <label>
+            Email:
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={email}
+              onChange={e => handleChange(e)}
+              placeholder="Email"
+              required
+            />
+          </label>
         </p>
         <p>
-          <label for="message">Message:</label>
-          <textarea
-            name="message"
-            id="message"
-            value={message}
-            onChange={e => handleChange(e)}
-            rows={6}
-            placeholder="Your message ..."
-            required
-          />
+          <label>
+            Message:
+            <textarea
+              name="message"
+              id="message"
+              value={message}
+              onChange={e => handleChange(e)}
+              rows={6}
+              placeholder="Your message ..."
+              required
+            />
+          </label>
         </p>
         <button type="submit" className="email-button">
           Message me

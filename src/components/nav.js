@@ -166,7 +166,22 @@ const Nav = ({ onToggleDarkMode, darkMode }) => {
               </CSSTransition>
             )}
           </TransitionGroup>
-          <DarkMode onToggleDarkMode={onToggleDarkMode} darkMode={darkMode} />
+          <TransitionGroup component={null}>
+            {isMounted && (
+              <CSSTransition classNames="fadedown" timeout={timeout}>
+                <div
+                  style={{
+                    transitionDelay: `${navLinks.length * 100 + 100}ms`,
+                  }}
+                >
+                  <DarkMode
+                    onToggleDarkMode={onToggleDarkMode}
+                    darkMode={darkMode}
+                  />
+                </div>
+              </CSSTransition>
+            )}
+          </TransitionGroup>
         </StyledLinks>
       </StyledNav>
       <TransitionGroup component={null}>

@@ -12,25 +12,25 @@ const Icon = ({ name, className }) => {
   switch (name) {
     case "Instagram":
       return <IconInstagram />
-      break
+
     case "LinkedIn":
       return <IconLinkedIn />
-      break
+
     case "Github":
       return <IconGitHub />
-      break
+
     case "External":
       return <IconExternal />
-      break
+
     case "CodeWar":
       return <IconCodeWar />
-      break
+
     case "Sun":
       return <IconSun className={className} />
-      break
+
     case "Moon":
       return <IconMoon className={className} />
-      break
+
     default:
       break
   }
