@@ -22,7 +22,7 @@ const StyledAboutSection = styled.section`
 const StyledText = styled.div`
   font-size: var(--fz-md);
   p {
-    margin: 0;
+    margin: 0 0 15px 0;
     line-height: 1.6;
   }
   ul {
@@ -109,18 +109,23 @@ const About = () => {
       <div className="inner">
         <StyledText>
           <div>
+            <p>Hello! I'm Vincent, a French software developer.</p>
             <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum.
+              I've always been fascinated by the web, which is why, after having
+              spent the last 7 years as an accomplished Event Manager, I have
+              decided to transition my career to the Tech Industry.
             </p>
+            <p>
+              I am a problem solver who enjoys creating things that live on the
+              internet, whether that be websites, applications, or anything in
+              between and I am seeking a full-time opportunity to leverage my
+              JavaScript and React knowledge.
+            </p>
+            <p>
+              I'm an outdoor lover, hobbyist photographer, and also a bit of a
+              boardgame fanatic.
+            </p>
+            <p>Here are a few technologies I've been working with recently:</p>
           </div>
           <ul>
             {skills && skills.map((skill, i) => <li key={i}>{skill}</li>)}
