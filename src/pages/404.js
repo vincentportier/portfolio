@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import Layout from "../components/layout"
 import styled from "styled-components"
 import Helmet from "react-helmet"
@@ -52,20 +52,29 @@ const StyledHomeButton = styled(Link)`
   }
 `
 const PageNotFound = () => {
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setIsMounted(true), 100)
+    return () => clearTimeout(timeout)
+  }, [])
+
   return (
     <DarkModeProvider>
       <Layout>
         <Helmet title="Page Not Found" />
-        <StyledContent className="fillHeight">
-          <div className="error-image">
-            <img src="/404.png" alt="404 illustration" />
-          </div>
-          <div className="error-content">
-            <h1>404</h1>
-            <h2>page not found</h2>
-            <StyledHomeButton to="/">Go home</StyledHomeButton>
-          </div>
-        </StyledContent>
+        {isMounted && (
+          <StyledContent className="fillHeight">
+            <div className="error-image">
+              <img src="/404.png" alt="404 illustration" />
+            </div>
+            <div className="error-content">
+              <h1>404</h1>
+              <h2>page not found</h2>
+              <StyledHomeButton to="/">Go home</StyledHomeButton>
+            </div>
+          </StyledContent>
+        )}
       </Layout>
     </DarkModeProvider>
   )
