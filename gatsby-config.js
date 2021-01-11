@@ -37,7 +37,7 @@ module.exports = {
         // Enables Google Optimize Experiment ID
         experimentId: "G-JVX091GLYL",
         // Set Variation ID. 0 for original 1,2,3....
-        variationId: 0,
+        variationId: "0",
         // Defers execution of google analytics script after page load
         defer: false,
         // Any additional optional fields
