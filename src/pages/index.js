@@ -3,7 +3,7 @@ import styled from "styled-components"
 import Layout from "../components/layout"
 import Hero from "../components/sections/hero"
 import About from "../components/sections/about"
-import Projects from "../components/sections/projects"
+import Featured from "../components/sections/featured"
 import Contact from "../components/sections/contact"
 import { DarkModeProvider } from "../context/index"
 
@@ -18,7 +18,7 @@ export default function Home() {
         <StyledContent className="fillHeight">
           <Hero />
           <About />
-          <Projects />
+          <Featured />
           <Contact />
         </StyledContent>
       </Layout>

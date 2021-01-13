@@ -166,7 +166,10 @@ const Project = ({
         <div className="header">
           <h3 className="project-title">{title}</h3>
         </div>
-        <div className="project-description">{description}</div>
+        <div
+          className="project-description"
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
         {technologies.length && (
           <ul className="project-tech-list">
             {technologies.map((technology, i) => (

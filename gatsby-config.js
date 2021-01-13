@@ -30,7 +30,6 @@ module.exports = {
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-robots-txt`,
     `gatsby-plugin-styled-components`,
-    `gatsby-transformer-remark`,
 
     {
       resolve: `gatsby-source-filesystem`,
@@ -39,5 +38,14 @@ module.exports = {
         path: path.join(__dirname, `src`, `images`),
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `featured`,
+        path: `${__dirname}/content/featured/`,
+      },
+    },
+
+    `gatsby-transformer-remark`,
   ],
 }
