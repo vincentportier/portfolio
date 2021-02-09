@@ -8,6 +8,7 @@ import { useEffect } from "react"
 import { TransitionGroup, CSSTransition } from "react-transition-group"
 import { loaderDelay } from "../utils/index"
 import DarkMode from "./darkmode"
+import Logo from "../images/logo"
 
 //this is how you use theme in the styled components ${({theme}) => ... }
 
@@ -59,10 +60,26 @@ const StyledNav = styled.nav`
 `
 
 const StyledLogo = styled(Link)`
-  font-family: "Montserrat", sans-serif;
-  font-weight: 900;
-  color: var(--black);
-  font-size: var(--fz-heading);
+  ${({ theme }) => theme.mixins.flexBetween}
+  svg {
+    display: block;
+    margin-left: 1rem;
+    width: auto;
+    transition: var(--transition);
+    height: ${props =>
+      props.scrolledToTop
+        ? css`calc(var(--nav-height) - 10px)`
+        : css`calc(var(--nav-height-scroll) - 10px)`};
+    fill: inherit;
+  }
+  span {
+    font-family: "Montserrat", sans-serif;
+    font-size: var(--fz-xxl);
+    margin-left: 1rem;
+    @media (max-width: 1000px) {
+      display: none;
+    }
+  }
 `
 const StyledLinks = styled.div`
   ${({ theme }) => theme.mixins.flexCenter}
@@ -127,7 +144,10 @@ const Nav = () => {
         <TransitionGroup component={null}>
           {isMounted && (
             <CSSTransition classNames="fade" timeout={timeout}>
-              <StyledLogo to="/">VP</StyledLogo>
+              <StyledLogo to="/" scrolledToTop={scrolledToTop}>
+                <Logo />
+                <span>Vincent Portier</span>
+              </StyledLogo>
             </CSSTransition>
           )}
         </TransitionGroup>
