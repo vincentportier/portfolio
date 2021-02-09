@@ -52,6 +52,7 @@ const Head = ({ title, description, image }) => {
         name="google-site-verification"
         content="SySUWCW6jTVLkGgwC010uVVEmo6CY8tHWtQT63hxdx4"
       />
+      <link rel="canonical" href={seo.url} />
     </Helmet>
   )
 }
