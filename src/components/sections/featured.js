@@ -17,7 +17,14 @@ const Featured = () => {
             node {
               frontmatter {
                 title
-                image
+                image {
+                  name
+                  childImageSharp {
+                    fluid(maxWidth: 800) {
+                      ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                    }
+                  }
+                }
                 technologies
                 github
                 external

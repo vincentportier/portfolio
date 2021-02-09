@@ -30,6 +30,19 @@ module.exports = {
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-robots-txt`,
     `gatsby-plugin-styled-components`,
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 800,
+            },
+          },
+        ],
+      },
+    },
 
     {
       resolve: `gatsby-source-filesystem`,
@@ -45,7 +58,5 @@ module.exports = {
         path: `${__dirname}/content/featured/`,
       },
     },
-
-    `gatsby-transformer-remark`,
   ],
 }

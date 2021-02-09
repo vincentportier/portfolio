@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import Icon from "./icons/icon"
+import Img from "gatsby-image"
 
 const StyledProject = styled.div`
   display: grid;
@@ -55,7 +56,15 @@ const StyledProject = styled.div`
 
     .project-image {
       grid-column: 1 / 8;
-      .img {
+      display: inline-block;
+
+      a {
+        width: 100%;
+      }
+
+      .image-wrapper {
+        width: 100%;
+        height: auto;
         transition: ease-in-out 0.25s;
 
         &:hover {
@@ -138,10 +147,17 @@ const StyledProject = styled.div`
     grid-row: 1 / -1;
     position: relative;
     z-index: 1;
+    display: inline-block;
+
+    a {
+      width: 100%;
+    }
     @media (max-width: 768px) {
       display: none;
     }
-    .img {
+    .image-wrapper {
+      width: 100%;
+      height: auto;
       border-radius: var(--border-radius);
       transition: ease-in-out 0.25s;
       &:hover {
@@ -160,6 +176,7 @@ const Project = ({
   image,
   myRef,
 }) => {
+  console.log(image)
   return (
     <StyledProject ref={myRef}>
       <div className="project-content">
@@ -206,7 +223,12 @@ const Project = ({
           target="_blank"
           rel="noopener noreferrer"
         >
-          <img src={image} alt={title} className="img" />
+          {image && (
+            <Img
+              fluid={image.childImageSharp.fluid}
+              className="image-wrapper"
+            />
+          )}
         </a>
       </div>
     </StyledProject>
