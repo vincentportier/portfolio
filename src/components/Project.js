@@ -181,7 +181,14 @@ const Project = ({
     <StyledProject ref={myRef}>
       <div className="project-content">
         <div className="header">
-          <h3 className="project-title">{title}</h3>
+          <a
+            href={external ? external : github ? github : "#"}
+            aria-label="Github link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <h3 className="project-title">{title}</h3>
+          </a>
         </div>
         <div
           className="project-description"
