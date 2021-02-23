@@ -1,6 +1,6 @@
 ---
 date: "3"
-title: "Toudou"
+title: "Toudo"
 technologies:
   - React
   - Firebase
