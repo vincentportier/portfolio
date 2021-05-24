@@ -1,5 +1,5 @@
 ---
-date: "5"
+date: "6"
 title: "FreeCodeCamp certification projects"
 technologies:
   - JavaScript
